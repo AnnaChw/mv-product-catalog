@@ -17,6 +17,8 @@ public class ProductVersionMapper {
                 .amiID(productVersionEntity.getAmiID())
                 .instructionLink(productVersionEntity.getInstructionLink())
                 .jobPlanLink(productVersionEntity.getJobPlanLink())
+                .date(productVersionEntity.getDate())
+                .defaultVersion(productVersionEntity.isDefaultVersion())
                 .build();
     }
 
@@ -26,6 +28,8 @@ public class ProductVersionMapper {
                 .amiID(productVersion.getAmiID())
                 .instructionLink(productVersion.getInstructionLink())
                 .jobPlanLink(productVersion.getJobPlanLink())
+                .defaultVersion(productVersion.isDefaultVersion())
+                .date(productVersion.getDate())
                 .build();
     }
 }

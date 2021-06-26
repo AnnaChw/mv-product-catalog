@@ -6,6 +6,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.time.LocalDate;
 
 @NoArgsConstructor
 @AllArgsConstructor
@@ -21,6 +22,8 @@ public class ProductVersionEntity {
     private String amiID;
     private String instructionLink;
     private String jobPlanLink;
+    private LocalDate date;
+    private boolean defaultVersion;
     @ManyToOne
     private CloudProductEntity cloudProduct;
 }

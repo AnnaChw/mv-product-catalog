@@ -51,6 +51,7 @@ public class CloudProductEntity {
                 .instructionLink(productVersion.getInstructionLink())
                 .jobPlanLink(productVersion.getJobPlanLink())
                 .cloudProduct(this)
+                .defaultVersion(productVersion.isDefaultVersion())
                 .build());
 
     }

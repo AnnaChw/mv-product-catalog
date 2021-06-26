@@ -12,5 +12,6 @@ import lombok.Setter;
 public class CloudProductSearchParams {
     private String name;
     private String category;
+    private boolean defaultVersionOnly;
 
 }

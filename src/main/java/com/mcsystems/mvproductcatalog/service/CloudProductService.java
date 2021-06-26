@@ -23,7 +23,7 @@ public class CloudProductService {
     public List<CloudProduct> getAllCloudProducts(){
         return cloudProductRepository.findAll()
                 .stream()
-                .map(entity -> cloudProductMapper.mapToCloudProduct(entity))
+                .map(entity -> cloudProductMapper.mapToCloudProductWithDefaultVersionsOnly(entity))
                 .collect(Collectors.toList());
     }
     @Transactional
@@ -52,7 +52,7 @@ public class CloudProductService {
     public List<CloudProduct> findByParams(CloudProductSearchParams searchParams) {
         return cloudProductRepository.findWithSearchParams(searchParams)
                 .stream()
-                .map(cloudProductEntity -> cloudProductMapper.mapToCloudProduct(cloudProductEntity))
+                .map(cloudProductEntity -> cloudProductMapper.mapToCloudProductWithDefaultVersionsOnly(cloudProductEntity))
                 .collect(Collectors.toList());
     }
 }

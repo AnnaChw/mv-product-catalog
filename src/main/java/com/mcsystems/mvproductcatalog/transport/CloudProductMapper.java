@@ -17,7 +17,15 @@ public class CloudProductMapper {
 
     private ProductVersionMapper productVersionMapper ;
 
+    public CloudProduct mapToCloudProductWithDefaultVersionsOnly(CloudProductEntity entity){
+        return mapToCloudProduct(entity, true);
+    }
+
     public CloudProduct mapToCloudProduct(CloudProductEntity entity){
+        return mapToCloudProduct(entity, false);
+    }
+
+    public CloudProduct mapToCloudProduct(CloudProductEntity entity, boolean defaultVersionOnly){
         return CloudProduct.builder()
                 .id(entity.getId())
                 .name(entity.getName())
@@ -26,6 +34,7 @@ public class CloudProductMapper {
                 .lastVersion(entity.getLatestVersion())
                 .category(entity.getCategory())
                 .productVersions(entity.getProductVersions().stream()
+                        .filter(version -> defaultVersionOnly ? version.isDefaultVersion() : version.isDefaultVersion() || !version.isDefaultVersion())
                         .map(version -> productVersionMapper.mapToProductVersion(version))
                         .collect(Collectors.toList()))
                 .build();
