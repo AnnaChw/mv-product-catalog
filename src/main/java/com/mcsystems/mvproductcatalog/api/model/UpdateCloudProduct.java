@@ -7,7 +7,8 @@ import lombok.*;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class NewCloudProduct {
+public class UpdateCloudProduct {
+    private Long id;
     private String name;
     private String lastVersion;
     private String description;

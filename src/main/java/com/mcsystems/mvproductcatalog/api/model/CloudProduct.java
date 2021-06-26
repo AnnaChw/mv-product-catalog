@@ -15,5 +15,6 @@ public class CloudProduct {
     private String lastVersion;
     private String description;
     private String cloudProductLink;
+    private String category;
     private List<ProductVersion> productVersions;
 }

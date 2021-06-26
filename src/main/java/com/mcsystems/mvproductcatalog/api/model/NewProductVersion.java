@@ -10,7 +10,6 @@ import lombok.*;
 public class NewProductVersion {
     private String name;
     private String amiID;
-    private String category;
     private String instructionLink;
     private String jobPlanLink;
     private Long cloudProductId;

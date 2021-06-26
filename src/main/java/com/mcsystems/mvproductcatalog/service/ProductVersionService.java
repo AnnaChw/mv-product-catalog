@@ -6,6 +6,8 @@ import com.mcsystems.mvproductcatalog.api.model.ProductVersion;
 import com.mcsystems.mvproductcatalog.repository.CloudProductRepository;
 import com.mcsystems.mvproductcatalog.repository.ProductVersionEntity;
 import com.mcsystems.mvproductcatalog.repository.ProductVersionRepository;
+import com.mcsystems.mvproductcatalog.transport.CloudProductMapper;
+import com.mcsystems.mvproductcatalog.transport.ProductVersionMapper;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -21,6 +23,7 @@ public class ProductVersionService {
 
     private ProductVersionRepository productVersionRepository;
     private CloudProductRepository cloudProductRepository;
+    private ProductVersionMapper productVersionMapper;
 
     @Transactional
     public Set<ProductVersion> addNewProductVersion(NewProductVersion productVersion){
@@ -30,21 +33,10 @@ public class ProductVersionService {
         return cloudProductRepository.findById(productVersion.getCloudProductId()).map(cloudProduct -> {
             cloudProduct.addNewVersion(productVersion);
             return cloudProduct.getProductVersions().stream()
-                    .map(this::mapToProductVersion)
+                    .map(entity -> productVersionMapper.mapToProductVersion(entity))
                     .collect(Collectors.toSet());
         }).orElseGet(HashSet::new);
     }
-
-    public ProductVersion mapToProductVersion(ProductVersionEntity productVersionEntity){
-        return ProductVersion.builder()
-                .name(productVersionEntity.getName())
-                .amiID(productVersionEntity.getAmiID())
-                .category(productVersionEntity.getCategory())
-                .instructionLink(productVersionEntity.getInstructionLink())
-                .jobPlanLink(productVersionEntity.getJobPlanLink())
-                .build();
-    }
-
 
 
 }
