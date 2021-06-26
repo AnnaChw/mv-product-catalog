@@ -2,18 +2,14 @@ package com.mcsystems.mvproductcatalog.api.model;
 
 import lombok.*;
 
-import java.util.List;
-
 @Getter
 @Setter
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class CloudProduct {
-    private Long id;
+public class NewCloudProduct {
     private String name;
     private String lastVersion;
     private String description;
     private String cloudProductLink;
-    private List<ProductVersion> productVersions;
 }

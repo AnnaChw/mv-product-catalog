@@ -2,6 +2,7 @@ package com.mcsystems.mvproductcatalog.api;
 
 import com.mcsystems.mvproductcatalog.api.model.CloudProduct;
 import com.mcsystems.mvproductcatalog.api.model.Errors;
+import com.mcsystems.mvproductcatalog.api.model.NewCloudProduct;
 import lombok.AllArgsConstructor;
 import org.springframework.context.support.DefaultMessageSourceResolvable;
 import org.springframework.http.HttpStatus;
@@ -26,18 +27,16 @@ public class ProductEndpoint {
     public List<CloudProduct> getAll(){
 
         return cloudProductService.getAllCloudProducts();
+    }
 
-//        final SessionFactory sessionFactory = HibernateUtils.getSessionFactory();
-//        HibernateUtils.shutdownSessionFactory();
-//
-//        //initial test values just to make sure postman is able to request it
-//        return Arrays.asList(CloudProduct.builder().id(1L).name("WebSphere").lastVersion("1.0").build(),
-//                CloudProduct.builder().id(5L).name("MQ").lastVersion("3.0").build());
+    @GetMapping("/{id}")
+    public CloudProduct getOne(@PathVariable Long id) {
+        return cloudProductService.getCloudProduct(id);
     }
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public ResponseEntity addCloudProduct(@RequestBody CloudProduct newProduct, BindingResult bindingResult){
+    public ResponseEntity addCloudProduct(@RequestBody NewCloudProduct newProduct, BindingResult bindingResult){
         if(bindingResult.hasErrors()){
             List<String> errorsMsgs = bindingResult.getAllErrors().stream()
                     .map(DefaultMessageSourceResolvable::getDefaultMessage)
