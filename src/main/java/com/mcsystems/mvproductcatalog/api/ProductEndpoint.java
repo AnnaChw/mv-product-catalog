@@ -51,7 +51,7 @@ public class ProductEndpoint {
         }
     }
 
-    @DeleteMapping("{id}")
+    @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void deleteCloudProduct(@PathVariable Long id){
         cloudProductService.deleteCloudProduct(id);

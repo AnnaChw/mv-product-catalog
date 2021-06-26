@@ -3,6 +3,7 @@ package com.mcsystems.mvproductcatalog.service;
 import com.mcsystems.mvproductcatalog.api.ProductVersionEndpoint;
 import com.mcsystems.mvproductcatalog.api.model.NewProductVersion;
 import com.mcsystems.mvproductcatalog.api.model.ProductVersion;
+import com.mcsystems.mvproductcatalog.repository.CloudProductEntity;
 import com.mcsystems.mvproductcatalog.repository.CloudProductRepository;
 import com.mcsystems.mvproductcatalog.repository.ProductVersionEntity;
 import com.mcsystems.mvproductcatalog.repository.ProductVersionRepository;
@@ -14,6 +15,7 @@ import org.springframework.stereotype.Service;
 import javax.transaction.Transactional;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -39,4 +41,7 @@ public class ProductVersionService {
     }
 
 
+    public void removeProductVersion(Long productVersionID) {
+        productVersionRepository.deleteById(productVersionID);
+    }
 }
