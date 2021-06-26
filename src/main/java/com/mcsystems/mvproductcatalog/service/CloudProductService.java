@@ -1,9 +1,6 @@
 package com.mcsystems.mvproductcatalog.service;
 
-import com.mcsystems.mvproductcatalog.api.model.CloudProduct;
-import com.mcsystems.mvproductcatalog.api.model.NewCloudProduct;
-import com.mcsystems.mvproductcatalog.api.model.ProductVersion;
-import com.mcsystems.mvproductcatalog.api.model.UpdateCloudProduct;
+import com.mcsystems.mvproductcatalog.api.model.*;
 import com.mcsystems.mvproductcatalog.repository.CloudProductRepository;
 import com.mcsystems.mvproductcatalog.repository.CloudProductEntity;
 import com.mcsystems.mvproductcatalog.repository.ProductVersionEntity;
@@ -49,5 +46,13 @@ public class CloudProductService {
 
     public void deleteCloudProduct(Long id) {
         cloudProductRepository.deleteById(id);
+    }
+
+
+    public List<CloudProduct> findByParams(CloudProductSearchParams searchParams) {
+        return cloudProductRepository.findWithSearchParams(searchParams)
+                .stream()
+                .map(cloudProductEntity -> cloudProductMapper.mapToCloudProduct(cloudProductEntity))
+                .collect(Collectors.toList());
     }
 }

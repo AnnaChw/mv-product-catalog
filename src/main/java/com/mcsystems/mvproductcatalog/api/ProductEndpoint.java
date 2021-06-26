@@ -1,6 +1,7 @@
 package com.mcsystems.mvproductcatalog.api;
 
 import com.mcsystems.mvproductcatalog.api.model.CloudProduct;
+import com.mcsystems.mvproductcatalog.api.model.CloudProductSearchParams;
 import com.mcsystems.mvproductcatalog.api.model.Errors;
 import com.mcsystems.mvproductcatalog.api.model.NewCloudProduct;
 import lombok.AllArgsConstructor;
@@ -25,7 +26,6 @@ public class ProductEndpoint {
 
     @GetMapping
     public List<CloudProduct> getAll(){
-
         return cloudProductService.getAllCloudProducts();
     }
 
@@ -55,5 +55,10 @@ public class ProductEndpoint {
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void deleteCloudProduct(@PathVariable Long id){
         cloudProductService.deleteCloudProduct(id);
+    }
+
+    @PostMapping("/search")
+    public List<CloudProduct> searchByParams(@RequestBody CloudProductSearchParams searchParams){
+        return cloudProductService.findByParams(searchParams);
     }
 }
