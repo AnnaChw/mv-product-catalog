@@ -11,4 +11,6 @@ public class CloudProduct {
     private Long id;
     private String name;
     private String lastVersion;
+    private String description;
+    private String cloudProductLink;
 }

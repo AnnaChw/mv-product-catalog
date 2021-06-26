@@ -2,22 +2,23 @@ package com.mcsystems.mvproductcatalog.repository;
 
 import lombok.*;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter
 @Builder
 @Entity
+@Table(name = "cloudProduct")
 public class CloudProductEntity {
-    @Setter
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
     private String latestVersion;
+    private String description;
+    private String cloudProductLink;
+
 
 
 }
