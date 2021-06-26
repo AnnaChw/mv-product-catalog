@@ -50,4 +50,10 @@ public class ProductEndpoint {
             return ResponseEntity.status(201).build();
         }
     }
+
+    @DeleteMapping("{id}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void deleteCloudProduct(@PathVariable Long id){
+        cloudProductService.deleteCloudProduct(id);
+    }
 }

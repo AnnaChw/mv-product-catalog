@@ -46,4 +46,8 @@ public class CloudProductService {
         CloudProductEntity entity = cloudProductMapper.mapToCloudProductEntity(cloudProduct);
         cloudProductRepository.save(entity);
     }
+
+    public void deleteCloudProduct(Long id) {
+        cloudProductRepository.deleteById(id);
+    }
 }
