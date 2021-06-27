@@ -24,6 +24,7 @@ public class ProductEndpoint {
 
     private CloudProductService cloudProductService;
 
+    @CrossOrigin(origins = "http://localhost:3000")
     @GetMapping
     public List<CloudProduct> getAll(){
         return cloudProductService.getAllCloudProducts();
